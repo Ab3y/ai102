@@ -1,0 +1,25 @@
+### AI-102 REST API Examples
+### Use with VS Code REST Client extension (humao.rest-client)
+### Replace {{endpoint}} and {{apiKey}} with your values
+### Or create a .env file with these variables
+
+### ============================================
+### Detect Language — Azure AI Language
+### Module 1, Lab 1.1
+### ============================================
+
+@endpoint = {{$dotenv AI_SERVICES_ENDPOINT}}
+@apiKey = {{$dotenv AI_SERVICES_KEY}}
+
+### Detect language
+POST {{endpoint}}/text/analytics/v3.2-preview.2/languages
+Content-Type: application/json
+Ocp-Apim-Subscription-Key: {{apiKey}}
+
+{
+  "documents": [
+    { "id": "1", "text": "Bonjour tout le monde" },
+    { "id": "2", "text": "Hello world" },
+    { "id": "3", "text": "Hola mundo" }
+  ]
+}

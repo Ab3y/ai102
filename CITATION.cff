@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use these study materials, please cite as below."
+authors:
+  - family-names: "Abraham"
+    given-names: "Abe"
+title: "AI-102 Azure AI Engineer Certification Study Resources"
+version: 1.0.0
+date-released: 2026-04-19
+url: "https://github.com/Ab3y/ai102"
+license: MIT
+type: dataset
+keywords:
+  - azure
+  - ai-102
+  - certification
+  - azure-ai-engineer
+  - study-guide

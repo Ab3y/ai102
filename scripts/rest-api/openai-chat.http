@@ -1,0 +1,66 @@
+### AI-102 REST API — Azure OpenAI Chat Completions
+### Module 2, Lab 2.1: Deploy and Use Azure OpenAI Models
+### Use with VS Code REST Client extension
+
+@openaiEndpoint = {{$dotenv AZURE_OPENAI_ENDPOINT}}
+@openaiKey = {{$dotenv AZURE_OPENAI_KEY}}
+@deploymentName = gpt-4o
+
+### ============================================
+### Chat Completions — Basic
+### EXAM TIP: Know the URL structure and api-version parameter
+### ============================================
+
+POST {{openaiEndpoint}}/openai/deployments/{{deploymentName}}/chat/completions?api-version=2024-08-01-preview
+Content-Type: application/json
+api-key: {{openaiKey}}
+
+{
+  "messages": [
+    { "role": "system", "content": "You are a helpful Azure AI assistant." },
+    { "role": "user", "content": "What are the main Azure AI services available for natural language processing?" }
+  ],
+  "temperature": 0.7,
+  "max_tokens": 500,
+  "top_p": 0.95
+}
+
+### ============================================
+### Chat Completions — With Parameters
+### EXAM TIP: Know what each parameter controls
+### temperature: randomness (0=deterministic, 2=very random)
+### top_p: nucleus sampling (alternative to temperature)
+### max_tokens: maximum response length
+### frequency_penalty: reduce repetition (-2 to 2)
+### presence_penalty: encourage new topics (-2 to 2)
+### ============================================
+
+POST {{openaiEndpoint}}/openai/deployments/{{deploymentName}}/chat/completions?api-version=2024-08-01-preview
+Content-Type: application/json
+api-key: {{openaiKey}}
+
+{
+  "messages": [
+    { "role": "system", "content": "You are a concise technical writer." },
+    { "role": "user", "content": "Explain RAG (Retrieval Augmented Generation) in 3 sentences." }
+  ],
+  "temperature": 0.3,
+  "max_tokens": 200,
+  "top_p": 0.9,
+  "frequency_penalty": 0.5,
+  "presence_penalty": 0.0
+}
+
+### ============================================
+### Embeddings — Generate vector embeddings
+### ============================================
+
+@embeddingDeployment = text-embedding-ada-002
+
+POST {{openaiEndpoint}}/openai/deployments/{{embeddingDeployment}}/embeddings?api-version=2024-08-01-preview
+Content-Type: application/json
+api-key: {{openaiKey}}
+
+{
+  "input": "Azure AI Search provides vector search capabilities for building RAG solutions."
+}

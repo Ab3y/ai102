@@ -1,0 +1,32 @@
+### AI-102 REST API — Azure AI Vision
+### Module 4, Lab 4.1: Analyze Images
+### Use with VS Code REST Client extension
+
+@endpoint = {{$dotenv AI_SERVICES_ENDPOINT}}
+@apiKey = {{$dotenv AI_SERVICES_KEY}}
+
+### ============================================
+### Image Analysis 4.0 — Tags, Caption, Objects
+### EXAM TIP: Know the visualFeatures parameter options
+### ============================================
+
+POST {{endpoint}}/computervision/imageanalysis:analyze?api-version=2024-02-01&features=tags,caption,objects,read,people,denseCaptions
+Content-Type: application/json
+Ocp-Apim-Subscription-Key: {{apiKey}}
+
+{
+  "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/media/quickstarts/presentation.png"
+}
+
+### ============================================
+### OCR — Read Text from Image
+### EXAM TIP: This is the newer unified Read API
+### ============================================
+
+POST {{endpoint}}/computervision/imageanalysis:analyze?api-version=2024-02-01&features=read
+Content-Type: application/json
+Ocp-Apim-Subscription-Key: {{apiKey}}
+
+{
+  "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/media/quickstarts/handwritten-text.jpg"
+}

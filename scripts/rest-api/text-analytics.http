@@ -1,0 +1,64 @@
+### AI-102 REST API — Text Analytics
+### Module 5, Lab 5.1: Sentiment, Entities, Key Phrases, PII
+### Use with VS Code REST Client extension
+
+@endpoint = {{$dotenv AI_SERVICES_ENDPOINT}}
+@apiKey = {{$dotenv AI_SERVICES_KEY}}
+
+### ============================================
+### Sentiment Analysis
+### ============================================
+
+POST {{endpoint}}/text/analytics/v3.2-preview.2/sentiment
+Content-Type: application/json
+Ocp-Apim-Subscription-Key: {{apiKey}}
+
+{
+  "documents": [
+    { "id": "1", "language": "en", "text": "The Azure AI services are excellent and easy to use!" },
+    { "id": "2", "language": "en", "text": "The deployment failed and caused a major outage." },
+    { "id": "3", "language": "en", "text": "The weather is cloudy today." }
+  ]
+}
+
+### ============================================
+### Key Phrase Extraction
+### ============================================
+
+POST {{endpoint}}/text/analytics/v3.2-preview.2/keyPhrases
+Content-Type: application/json
+Ocp-Apim-Subscription-Key: {{apiKey}}
+
+{
+  "documents": [
+    { "id": "1", "language": "en", "text": "Azure AI Search provides full-text search, vector search, and semantic ranking capabilities for building intelligent search applications." }
+  ]
+}
+
+### ============================================
+### Named Entity Recognition
+### ============================================
+
+POST {{endpoint}}/text/analytics/v3.2-preview.2/entities/recognition/general
+Content-Type: application/json
+Ocp-Apim-Subscription-Key: {{apiKey}}
+
+{
+  "documents": [
+    { "id": "1", "language": "en", "text": "Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975 in Albuquerque, New Mexico." }
+  ]
+}
+
+### ============================================
+### PII Detection
+### ============================================
+
+POST {{endpoint}}/text/analytics/v3.2-preview.2/entities/recognition/pii
+Content-Type: application/json
+Ocp-Apim-Subscription-Key: {{apiKey}}
+
+{
+  "documents": [
+    { "id": "1", "language": "en", "text": "My name is John Smith, my email is john@contoso.com and my SSN is 123-45-6789." }
+  ]
+}
